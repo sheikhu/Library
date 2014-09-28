@@ -1,0 +1,4 @@
+sheikhu_library:
+    resource: "@SheikhuLibraryBundle/Resources/config/routing.yml"
+    prefix:   /
+
