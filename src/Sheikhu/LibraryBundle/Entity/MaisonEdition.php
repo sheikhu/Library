@@ -2,6 +2,7 @@
 
 namespace Sheikhu\LibraryBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,7 +29,12 @@ class MaisonEdition
      */
     private $nom;
 
-
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Livre", mappedBy="maisonEdition")
+     */
+    private $livres;
     /**
      * Get id
      *
@@ -60,5 +66,45 @@ class MaisonEdition
     public function getNom()
     {
         return $this->nom;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->livres = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add livres
+     *
+     * @param \Sheikhu\LibraryBundle\Entity\Livre $livres
+     * @return MaisonEdition
+     */
+    public function addLivre(\Sheikhu\LibraryBundle\Entity\Livre $livres)
+    {
+        $this->livres[] = $livres;
+
+        return $this;
+    }
+
+    /**
+     * Remove livres
+     *
+     * @param \Sheikhu\LibraryBundle\Entity\Livre $livres
+     */
+    public function removeLivre(\Sheikhu\LibraryBundle\Entity\Livre $livres)
+    {
+        $this->livres->removeElement($livres);
+    }
+
+    /**
+     * Get livres
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLivres()
+    {
+        return $this->livres;
     }
 }

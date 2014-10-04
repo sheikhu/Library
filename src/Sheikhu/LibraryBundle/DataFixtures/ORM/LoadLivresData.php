@@ -38,7 +38,8 @@ class LoadLivresData extends AbstractFixture implements OrderedFixtureInterface 
             ->setStatut("disponible")
             ->setDateParution($faker->dateTime)
             ->setNombreDisponible(20)
-            ->setDateAcquis($faker->dateTime);
+            ->setDateAcquis($faker->dateTime)
+            ->setMaisonEdition($this->getReference("eyrolles"));
 
         $manager->persist($book);
         $manager->flush();

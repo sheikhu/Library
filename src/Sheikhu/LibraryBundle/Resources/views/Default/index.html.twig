@@ -14,8 +14,10 @@
 <ul>
     {% for b in data %}
         <li>
-            {{ b.titre }} [ {{ b.isbn }} ] dans <a href="#">{{  b.categorie.nom }}</a>
+            {{ b.titre }} dans <a href="#">{{  b.categorie.nom }}</a>
             <ul>
+                <li><b>Code</b>: {{ b.isbn }} </li>
+                <li><b>Editeur</b>: {{ b.maisonEdition.nom }}</li>
                 <li><b>Exemplaires</b> : {{ b.exemplaires | length }} </li>
             </ul>
         </li>

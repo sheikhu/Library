@@ -86,6 +86,12 @@ class Livre
      */
     private $auteurs;
 
+    /**
+     * @var MaisonEdition
+     *
+     * @ORM\ManyToOne(targetEntity="MaisonEdition", inversedBy="livres")
+     */
+    private $maisonEdition;
 
     /**
      * Constructor
@@ -333,5 +339,28 @@ class Livre
     public function getAuteurs()
     {
         return $this->auteurs;
+    }
+
+    /**
+     * Set maisonEdition
+     *
+     * @param \Sheikhu\LibraryBundle\Entity\MaisonEdition $maisonEdition
+     * @return Livre
+     */
+    public function setMaisonEdition(\Sheikhu\LibraryBundle\Entity\MaisonEdition $maisonEdition = null)
+    {
+        $this->maisonEdition = $maisonEdition;
+
+        return $this;
+    }
+
+    /**
+     * Get maisonEdition
+     *
+     * @return \Sheikhu\LibraryBundle\Entity\MaisonEdition 
+     */
+    public function getMaisonEdition()
+    {
+        return $this->maisonEdition;
     }
 }
