@@ -2,6 +2,7 @@
 
 namespace Sheikhu\LibraryBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,6 +57,12 @@ class Exemplaire
      */
     private $livre;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Pret", mappedBy="exemplaires")
+     */
+    private $prets;
     /**
      * Get id
      *
@@ -178,5 +185,45 @@ class Exemplaire
     public function getLivre()
     {
         return $this->livre;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->prets = new ArrayCollection();
+    }
+
+    /**
+     * Add prets
+     *
+     * @param \Sheikhu\LibraryBundle\Entity\Pret $pret
+     * @return Exemplaire
+     */
+    public function addPret(Pret $pret)
+    {
+        $this->prets[] = $pret;
+
+        return $this;
+    }
+
+    /**
+     * Remove prets
+     *
+     * @param \Sheikhu\LibraryBundle\Entity\Pret $pret
+     */
+    public function removePret(Pret $pret)
+    {
+        $this->prets->removeElement($pret);
+    }
+
+    /**
+     * Get prets
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPrets()
+    {
+        return $this->prets;
     }
 }
