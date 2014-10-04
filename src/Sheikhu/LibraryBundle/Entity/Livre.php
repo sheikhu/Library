@@ -25,7 +25,7 @@ class Livre
     /**
      * @var integer
      *
-     * @ORM\Column(name="isbn", type="integer")
+     * @ORM\Column(name="isbn", type="string")
      */
     private $isbn;
 
@@ -60,14 +60,14 @@ class Livre
     /**
      * @var integer
      *
-     * @ORM\Column(name="nombreDisponible", type="integer")
+     * @ORM\Column(name="nombreDisponible", type="string", unique=true)
      */
     private $nombreDisponible;
 
     /**
      * @var Categorie
      *
-     * @ORM\ManyToOne(targetEntity="Livre", inversedBy="categorie")
+     * @ORM\ManyToOne(targetEntity="Categorie", inversedBy="livres")
      */
     private $categorie;
 

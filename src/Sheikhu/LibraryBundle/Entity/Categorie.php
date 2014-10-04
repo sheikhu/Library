@@ -4,7 +4,8 @@ namespace Sheikhu\LibraryBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Knp\DoctrineBehaviors\Model\Sluggable\Sluggable;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+
 
 /**
  * Categorie
@@ -15,7 +16,8 @@ use Knp\DoctrineBehaviors\Model\Sluggable\Sluggable;
 class Categorie
 {
 
-    use Sluggable;
+    use ORMBehaviors\Sluggable\Sluggable;
+
     /**
      * @var integer
      *
@@ -48,7 +50,7 @@ class Categorie
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -71,7 +73,7 @@ class Categorie
     /**
      * Get nom
      *
-     * @return string 
+     * @return string
      */
     public function getNom()
     {

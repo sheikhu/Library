@@ -2,6 +2,7 @@
 
 namespace Sheikhu\LibraryBundle\Controller;
 
+use Faker\Factory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
