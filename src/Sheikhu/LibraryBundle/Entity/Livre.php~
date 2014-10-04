@@ -2,7 +2,9 @@
 
 namespace Sheikhu\LibraryBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Proxies\__CG__\Sheikhu\LibraryBundle\Entity\Categorie;
 
 /**
  * Livre
@@ -24,7 +26,7 @@ class Livre
     /**
      * @var integer
      *
-     * @ORM\Column(name="isbn", type="integer")
+     * @ORM\Column(name="isbn", type="string")
      */
     private $isbn;
 
@@ -59,16 +61,23 @@ class Livre
     /**
      * @var integer
      *
-     * @ORM\Column(name="nombreDisponible", type="integer")
+     * @ORM\Column(name="nombreDisponible", type="string", unique=true)
      */
     private $nombreDisponible;
 
     /**
      * @var Categorie
      *
-     * @ORM\ManyToOne(targetEntity="Livre", inversedBy="livres")
+     * @ORM\ManyToOne(targetEntity="Categorie", inversedBy="livres")
      */
     private $categorie;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Exemplaire", mappedBy="livre")
+     */
+    private $exemplaires;
 
     /**
      * Get id
@@ -221,10 +230,10 @@ class Livre
     /**
      * Set categorie
      *
-     * @param \Sheikhu\LibraryBundle\Entity\Livre $categorie
+     * @param Categorie $categorie
      * @return Livre
      */
-    public function setCategorie(\Sheikhu\LibraryBundle\Entity\Livre $categorie = null)
+    public function setCategorie(Categorie $categorie = null)
     {
         $this->categorie = $categorie;
 
@@ -234,7 +243,7 @@ class Livre
     /**
      * Get categorie
      *
-     * @return \Sheikhu\LibraryBundle\Entity\Livre 
+     * @return \Sheikhu\LibraryBundle\Entity\Categorie
      */
     public function getCategorie()
     {

@@ -2,6 +2,7 @@
 
 namespace Sheikhu\LibraryBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Proxies\__CG__\Sheikhu\LibraryBundle\Entity\Categorie;
 
@@ -70,6 +71,13 @@ class Livre
      * @ORM\ManyToOne(targetEntity="Categorie", inversedBy="livres")
      */
     private $categorie;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Exemplaire", mappedBy="livre")
+     */
+    private $exemplaires;
 
     /**
      * Get id
@@ -240,5 +248,47 @@ class Livre
     public function getCategorie()
     {
         return $this->categorie;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->exemplaires = new ArrayCollection();
+    }
+
+    /**
+     * Add exemplaires
+     *
+     * @param \Sheikhu\LibraryBundle\Entity\Exemplaire $exemplaires
+     * @return Livre
+     */
+    public function addExemplaire(Exemplaire $exemplaires)
+    {
+        $this->exemplaires[] = $exemplaires;
+        $exemplaires->setLivre($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove exemplaires
+     *
+     * @param \Sheikhu\LibraryBundle\Entity\Exemplaire $exemplaires
+     */
+    public function removeExemplaire(Exemplaire $exemplaires)
+    {
+        $this->exemplaires->removeElement($exemplaires);
+        $exemplaires->setLivre(null);
+    }
+
+    /**
+     * Get exemplaires
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getExemplaires()
+    {
+        return $this->exemplaires;
     }
 }
