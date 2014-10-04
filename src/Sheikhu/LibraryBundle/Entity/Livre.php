@@ -38,6 +38,13 @@ class Livre
     private $titre;
 
     /**
+     * @var string
+     *
+     * @ORM\Column()
+     */
+    private $synopsis;
+    
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="dateParution", type="date")
@@ -311,12 +318,12 @@ class Livre
     /**
      * Add auteurs
      *
-     * @param \Sheikhu\LibraryBundle\Entity\Auteur $auteurs
+     * @param \Sheikhu\LibraryBundle\Entity\Auteur $auteur
      * @return Livre
      */
-    public function addAuteur(\Sheikhu\LibraryBundle\Entity\Auteur $auteurs)
+    public function addAuteur(Auteur $auteur)
     {
-        $this->auteurs[] = $auteurs;
+        $this->auteurs[] = $auteur;
 
         return $this;
     }
@@ -347,7 +354,7 @@ class Livre
      * @param \Sheikhu\LibraryBundle\Entity\MaisonEdition $maisonEdition
      * @return Livre
      */
-    public function setMaisonEdition(\Sheikhu\LibraryBundle\Entity\MaisonEdition $maisonEdition = null)
+    public function setMaisonEdition(MaisonEdition $maisonEdition = null)
     {
         $this->maisonEdition = $maisonEdition;
 
@@ -363,4 +370,25 @@ class Livre
     {
         return $this->maisonEdition;
     }
+
+    /**
+     * @return string
+     */
+    public function getSynopsis()
+    {
+        return $this->synopsis;
+    }
+
+    /**
+     * @param string $synopsis
+     *
+     * @return Livre
+     */
+    public function setSynopsis($synopsis)
+    {
+        $this->synopsis = $synopsis;
+        return $this;
+    }
+
+
 }

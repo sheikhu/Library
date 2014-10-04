@@ -32,6 +32,7 @@ class LoadLivresData extends AbstractFixture implements OrderedFixtureInterface 
 
 
         $book->setTitre("L'ile mysterieuse")
+            ->setSynopsis($faker->paragraph(3))
             ->setDateAcquis(new \DateTime())
             ->setCategorie($this->getReference("aventure"))
             ->setIsbn($faker->ean13)
