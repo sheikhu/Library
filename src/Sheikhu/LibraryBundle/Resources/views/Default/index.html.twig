@@ -1,1 +1,21 @@
-Hello {{ name }}!
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>App</title>
+</head>
+<body>
+<div>
+    Hello {{ name }}!
+</div>
+<hr/>
+
+<b>Books</b> :
+<ul>
+    {% for b in data %}
+        <li>{{ b.titre }}</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

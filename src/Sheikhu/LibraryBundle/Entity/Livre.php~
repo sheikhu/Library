@@ -3,7 +3,6 @@
 namespace Sheikhu\LibraryBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Proxies\__CG__\Sheikhu\LibraryBundle\Entity\Categorie;
 
 /**
  * Livre
@@ -67,7 +66,7 @@ class Livre
     /**
      * @var Categorie
      *
-     * @ORM\ManyToOne(targetEntity="Livre", inversedBy="categorie")
+     * @ORM\ManyToOne(targetEntity="Livre", inversedBy="livres")
      */
     private $categorie;
 
@@ -222,10 +221,10 @@ class Livre
     /**
      * Set categorie
      *
-     * @param Categorie $categorie
+     * @param \Sheikhu\LibraryBundle\Entity\Livre $categorie
      * @return Livre
      */
-    public function setCategorie(Categorie $categorie = null)
+    public function setCategorie(\Sheikhu\LibraryBundle\Entity\Livre $categorie = null)
     {
         $this->categorie = $categorie;
 
@@ -235,7 +234,7 @@ class Livre
     /**
      * Get categorie
      *
-     * @return \Sheikhu\LibraryBundle\Entity\Categorie
+     * @return \Sheikhu\LibraryBundle\Entity\Livre 
      */
     public function getCategorie()
     {

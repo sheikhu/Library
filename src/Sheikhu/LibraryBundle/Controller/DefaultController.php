@@ -2,12 +2,17 @@
 
 namespace Sheikhu\LibraryBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
+    /**
+     * @Template()
+     */
     public function indexAction($name)
     {
-        return $this->render('SheikhuLibraryBundle:Default:index.html.twig', array('name' => $name));
+        $data = $this->getDoctrine()->getRepository("SheikhuLibraryBundle:Livre")->findAll();
+        return compact('name', 'data');
     }
 }

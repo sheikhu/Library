@@ -107,27 +107,4 @@ class Categorie
     }
 
 
-
-    /**
-     * Add livres
-     *
-     * @param \Sheikhu\LibraryBundle\Entity\Livre $livres
-     * @return Categorie
-     */
-    public function addLivre(Livre $livres)
-    {
-        $this->livres[] = $livres;
-
-        return $this;
-    }
-
-    /**
-     * Remove livres
-     *
-     * @param \Sheikhu\LibraryBundle\Entity\Livre $livres
-     */
-    public function removeLivre(Livre $livres)
-    {
-        $this->livres->removeElement($livres);
-    }
 }
