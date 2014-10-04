@@ -3,22 +3,21 @@
  * Created by PhpStorm.
  * User: sheikhu
  * Date: 04/10/14
- * Time: 00:18
+ * Time: 12:30
  */
 
 namespace Sheikhu\LibraryBundle\DataFixtures\ORM;
 
+
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\Doctrine;
-use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
-use Sheikhu\LibraryBundle\Entity\Categorie;
-use Sheikhu\LibraryBundle\Entity\Livre;
+use Sheikhu\LibraryBundle\Entity\Exemplaire;
 
+class LoadExemplairesData extends AbstractFixture implements OrderedFixtureInterface {
 
-class LoadLivresData extends AbstractFixture implements OrderedFixtureInterface {
     /**
      * Load data fixtures with the passed EntityManager
      *
@@ -26,27 +25,23 @@ class LoadLivresData extends AbstractFixture implements OrderedFixtureInterface 
      */
     public function load(ObjectManager $manager)
     {
+        $faker = Factory::create();
 
-        $faker = \Faker\Factory::create();
-        $book = new Livre();
+        $book = $this->getReference("ile-mysterieuse");
+        $exemplaire = new Exemplaire();
 
+        $exemplaire->setLivre($book);
 
-        $book->setTitre("L'ile mysterieuse")
-            ->setDateAcquis(new \DateTime())
-            ->setCategorie($this->getReference("aventure"))
-            ->setIsbn($faker->ean13)
-            ->setStatut("disponible")
-            ->setDateParution($faker->dateTime)
-            ->setNombreDisponible(20)
-            ->setDateAcquis($faker->dateTime);
+        $exemplaire->setDateAcquis($faker->dateTime)
+            ->setCode($faker->ean8)
+            ->setCout(5000)
+            ->setEtat("parfait");
 
+        $exemplaire->getLivre()->addExemplaire($exemplaire);
+
+        $manager->persist($exemplaire);
         $manager->persist($book);
         $manager->flush();
-
-        $this->addReference("ile-mysterieuse", $book);
-
-
-
     }
 
     /**
@@ -56,8 +51,6 @@ class LoadLivresData extends AbstractFixture implements OrderedFixtureInterface 
      */
     public function getOrder()
     {
-        return 3;
+        return 4;
     }
-
-
 }

@@ -44,6 +44,13 @@ class Auteur
     private $livres;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->livres = new ArrayCollection();
+    }
+    /**
      * Get id
      *
      * @return integer 
@@ -97,5 +104,38 @@ class Auteur
     public function getPrenom()
     {
         return $this->prenom;
+    }
+
+    /**
+     * Add livres
+     *
+     * @param \Sheikhu\LibraryBundle\Entity\Livre $livre
+     * @return Auteur
+     */
+    public function addLivre(Livre $livre)
+    {
+        $this->livres[] = $livre;
+
+        return $this;
+    }
+
+    /**
+     * Remove livres
+     *
+     * @param \Sheikhu\LibraryBundle\Entity\Livre $livres
+     */
+    public function removeLivre(Livre $livres)
+    {
+        $this->livres->removeElement($livres);
+    }
+
+    /**
+     * Get livres
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLivres()
+    {
+        return $this->livres;
     }
 }

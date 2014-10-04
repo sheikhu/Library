@@ -164,10 +164,9 @@ class Exemplaire
      * @param \Sheikhu\LibraryBundle\Entity\Livre $livre
      * @return Exemplaire
      */
-    public function setLivre(\Sheikhu\LibraryBundle\Entity\Livre $livre = null)
+    public function setLivre(Livre $livre = null)
     {
         $this->livre = $livre;
-
         return $this;
     }
 

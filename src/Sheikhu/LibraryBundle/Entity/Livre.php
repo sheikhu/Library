@@ -93,6 +93,7 @@ class Livre
     public function __construct()
     {
         $this->exemplaires = new ArrayCollection();
+        $this->auteurs = new ArrayCollection();
     }
 
     /**
@@ -299,5 +300,38 @@ class Livre
     public function getExemplaires()
     {
         return $this->exemplaires;
+    }
+
+    /**
+     * Add auteurs
+     *
+     * @param \Sheikhu\LibraryBundle\Entity\Auteur $auteurs
+     * @return Livre
+     */
+    public function addAuteur(\Sheikhu\LibraryBundle\Entity\Auteur $auteurs)
+    {
+        $this->auteurs[] = $auteurs;
+
+        return $this;
+    }
+
+    /**
+     * Remove auteurs
+     *
+     * @param \Sheikhu\LibraryBundle\Entity\Auteur $auteurs
+     */
+    public function removeAuteur(\Sheikhu\LibraryBundle\Entity\Auteur $auteurs)
+    {
+        $this->auteurs->removeElement($auteurs);
+    }
+
+    /**
+     * Get auteurs
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAuteurs()
+    {
+        return $this->auteurs;
     }
 }

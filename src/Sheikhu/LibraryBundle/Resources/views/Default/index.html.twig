@@ -13,7 +13,12 @@
 <b>Books</b> :
 <ul>
     {% for b in data %}
-        <li>{{ b.titre }} [ {{ b.isbn }} ] in <a href="#">{{  b.categorie.nom }}</a></li>
+        <li>
+            {{ b.titre }} [ {{ b.isbn }} ] dans <a href="#">{{  b.categorie.nom }}</a>
+            <ul>
+                <li><b>Exemplaires</b> : {{ b.exemplaires | length }} </li>
+            </ul>
+        </li>
     {% endfor %}
 </ul>
 
