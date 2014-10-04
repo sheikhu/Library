@@ -80,6 +80,22 @@ class Livre
     private $exemplaires;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Auteur", mappedBy="livres")
+     */
+    private $auteurs;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->exemplaires = new ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return integer 
@@ -248,13 +264,6 @@ class Livre
     public function getCategorie()
     {
         return $this->categorie;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->exemplaires = new ArrayCollection();
     }
 
     /**
