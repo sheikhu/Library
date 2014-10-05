@@ -46,6 +46,10 @@ class Categorie
         $this->livres = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->nom;
+    }
 
     /**
      * Get id

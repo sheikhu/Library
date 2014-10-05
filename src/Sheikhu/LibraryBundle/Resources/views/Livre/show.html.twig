@@ -1,0 +1,56 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Livre</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Isbn</th>
+                <td>{{ entity.isbn }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ entity.titre }}</td>
+            </tr>
+            <tr>
+                <th>Synopsis</th>
+                <td>{{ entity.synopsis }}</td>
+            </tr>
+            <tr>
+                <th>Dateparution</th>
+                <td>{{ entity.dateParution|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Dateacquis</th>
+                <td>{{ entity.dateAcquis|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ entity.statut }}</td>
+            </tr>
+            <tr>
+                <th>Nombredisponible</th>
+                <td>{{ entity.nombreDisponible }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('livres') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('livres_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

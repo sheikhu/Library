@@ -4,7 +4,6 @@ namespace Sheikhu\LibraryBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Proxies\__CG__\Sheikhu\LibraryBundle\Entity\Categorie;
 
 /**
  * Livre

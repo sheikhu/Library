@@ -1,3 +1,7 @@
+sheikhu_library_livres:
+    resource: "@SheikhuLibraryBundle/Resources/config/routing/livre.yml"
+    prefix:   /livres
+
 sheikhu_library_categories:
     resource: "@SheikhuLibraryBundle/Resources/config/routing/categorie.yml"
     prefix:   /categories

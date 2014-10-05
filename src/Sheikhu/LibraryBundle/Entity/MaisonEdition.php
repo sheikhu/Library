@@ -72,7 +72,12 @@ class MaisonEdition
      */
     public function __construct()
     {
-        $this->livres = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->livres = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
     }
 
     /**
@@ -81,7 +86,7 @@ class MaisonEdition
      * @param \Sheikhu\LibraryBundle\Entity\Livre $livres
      * @return MaisonEdition
      */
-    public function addLivre(\Sheikhu\LibraryBundle\Entity\Livre $livres)
+    public function addLivre(Livre $livres)
     {
         $this->livres[] = $livres;
 

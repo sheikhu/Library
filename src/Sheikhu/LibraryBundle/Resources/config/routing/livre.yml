@@ -1,0 +1,30 @@
+livres:
+    path:     /
+    defaults: { _controller: "SheikhuLibraryBundle:Livre:index" }
+
+livres_show:
+    path:     /{id}/show
+    defaults: { _controller: "SheikhuLibraryBundle:Livre:show" }
+
+livres_new:
+    path:     /new
+    defaults: { _controller: "SheikhuLibraryBundle:Livre:new" }
+
+livres_create:
+    path:     /create
+    defaults: { _controller: "SheikhuLibraryBundle:Livre:create" }
+    requirements: { _method: post }
+
+livres_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SheikhuLibraryBundle:Livre:edit" }
+
+livres_update:
+    path:     /{id}/update
+    defaults: { _controller: "SheikhuLibraryBundle:Livre:update" }
+    requirements: { _method: post|put }
+
+livres_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SheikhuLibraryBundle:Livre:delete" }
+    requirements: { _method: post|delete }
