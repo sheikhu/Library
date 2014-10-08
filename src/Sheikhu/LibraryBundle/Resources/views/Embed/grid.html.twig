@@ -1,0 +1,12 @@
+<div class="mws-panel grid_{{ size |default(4) }}">
+    <div class="mws-panel-header">
+        <span>{{ title }}</span>
+    </div>
+    {% block toolbar_top %}{% endblock %}
+    <div class="mws-panel-body no-padding">
+        {% block grid_content %}
+
+        {% endblock %}
+    </div>
+    {% block toolbar_bottom %}{% endblock %}
+</div>

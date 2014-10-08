@@ -8,101 +8,83 @@
 {% endblock money_widget %}
 
 {% block form_widget_simple %}
-{% spaceless %}
-{% set type = type|default('text') %}
-{% set attr = attr|merge({'class': attr.class|default('') }) %}
-<input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
-{% endspaceless %}
+    {% spaceless %}
+        {% set type = type|default('text') %}
+        {% set attr = attr|merge({'class': attr.class|default('') }) %}
+        <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    {% endspaceless %}
 {% endblock form_widget_simple %}
 
 {% block form_row %}
-{% spaceless %}
+    {% spaceless %}
 
-<div class="mws-form-row bordered">
-    {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' mws-form-label'}) %}
-    {{ block('form_label') }}
+        <div class="mws-form-row bordered">
+            {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' mws-form-label'}) %}
+            {{ block('form_label') }}
 
-    {% if errors|length > 0 %}
-    {% set attr = attr|merge({'class': attr.class|default('') ~ ' error'}) %}
-    {% endif %}
+            {% if errors|length > 0 %}
+                {% set attr = attr|merge({'class': attr.class|default('') ~ ' error'}) %}
+            {% endif %}
 
-    <div class="mws-form-item">
+            <div class="mws-form-item">
 
-        {% set attr = attr|merge({'class': attr.class|default('') ~ ' medium'}) %}
+                {% set attr = attr|merge({'class': attr.class|default('') ~ ' medium'}) %}
 
-        {% if errors|length > 0 %}
-        {% set attr = attr|merge({'class': attr.class|default('') ~ ' error'}) %}
-        {% endif %}
+                {% if errors|length > 0 %}
+                    {% set attr = attr|merge({'class': attr.class|default('') ~ ' error'}) %}
+                {% endif %}
 
-        {{ form_widget(form, {attr: attr}) }}
-        {{ form_errors(form) }}
+                {{ form_widget(form, {attr: attr}) }}
+                {{ form_errors(form) }}
 
 
 
-    </div>
+            </div>
 
-</div>
-{% endspaceless %}
+        </div>
+    {% endspaceless %}
 {% endblock form_row %}
 
 {% block form_errors %}
-{% spaceless %}
-{% if errors|length > 0 %}
-{% for error in errors %}
-<div class="mws-error">
-    {{ error.message }}
-</div>
-{% endfor %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                <div class="mws-error">
+                    {{ error.message }}
+                </div>
+            {% endfor %}
 
-{% endif %}
-{% endspaceless %}
+        {% endif %}
+    {% endspaceless %}
 {% endblock form_errors %}
 
 {% block submit_widget %}
-{% spaceless %}
-{% set type = type|default('submit') %}
-{% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn btn-success')|trim}) %}
-{{ block('button_widget') }}
-{% endspaceless %}
+    {% spaceless %}
+        {% set type = type|default('submit') %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn')|trim}) %}
+        {{ block('button_widget') }}
+    {% endspaceless %}
 {% endblock submit_widget %}
 
 {% block reset_widget %}
-{% spaceless %}
-{% set type = type|default('submit') %}
-{% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn btn-default')|trim}) %}
-{{ block('button_widget') }}
-{% endspaceless %}
+    {% spaceless %}
+        {% set type = type|default('submit') %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn btn-default')|trim}) %}
+        {{ block('button_widget') }}
+    {% endspaceless %}
 {% endblock reset_widget %}
 
 
-{% block _commande_commandeProduits_entry_row %}
-
-    <div class="mws-form-row bordered row-collection">
-    <div class="mws-form-cols">
-
-        <div class="mws-form-col-3-8">
-            {{ form_label(form.produit) }}
-            <div class="mws-form-item">
-                {{ form_widget(form.produit) }}
-                {{ form_errors(form.produit) }}
-            </div>
-        </div>
-
-        <div class="mws-form-col-3-8">
-            {{ form_label(form.quantite) }}
-            <div class="mws-form-item">
-                {{ form_widget(form.quantite) }}
-                {{ form_errors(form.quantite) }}
-            </div>
-        </div>
-
-        <div class="mws-form-col-1-8">
-        <a href="#" class="drop-row pull-right">
-        <i class="icon-trash" style="font-size:26px"></i>
-        </a>
-        </div>
-
-    </div>
-    </div>
-
-{% endblock _commande_commandeProduits_entry_row %}
+{% block form_start -%}
+    {% set method = method|upper %}
+    {%- if method in ["GET", "POST"] -%}
+        {% set form_method = method %}
+    {%- else -%}
+        {% set form_method = "POST" %}
+    {%- endif -%}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' mws-form')|trim}) %}
+    <form name="{{ form.vars.name }}" method="{{ form_method|lower }}" action="{{ action }}"{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}{% if multipart %} enctype="multipart/form-data"{% endif %}>
+    {%- if form_method != method -%}
+        <input type="hidden" name="_method" value="{{ method }}" />
+    {%- endif -%}
+{%- endblock form_start %}

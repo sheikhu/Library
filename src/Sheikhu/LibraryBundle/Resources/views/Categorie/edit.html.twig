@@ -1,16 +1,34 @@
 {% extends 'SheikhuLibraryBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>Categorie edit</h1>
+    {% embed "@SheikhuLibrary/Embed/grid.html.twig" with { size: 4 } %}
 
-    {{ form(edit_form) }}
+        {% set title = "Modification" %}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('categories') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+        {% block grid_content %}
+
+            {{ form_start(edit_form) }}
+            <div class="mws-form-inline">
+
+                {{ form_row(edit_form.nom) }}
+
+                <div class="mws-button-row">
+                    {{ form_row(edit_form.submit) }}
+                </div>
+            </div>
+            {{ form_end(edit_form) }}
+
+        {% endblock %}
+
+        {% block toolbar_bottom %}
+            <div class="mws-panel-toolbar">
+                <div class="btn-group dropup">
+
+                    {{ form_start(delete_form) }}
+                    {{ form_row(delete_form.submit, {'attr': {class: 'btn-danger'}}) }}
+                    {{ form_end(delete_form) }}
+                </div>
+            </div>
+        {% endblock %}
+    {% endembed %}
 {% endblock %}

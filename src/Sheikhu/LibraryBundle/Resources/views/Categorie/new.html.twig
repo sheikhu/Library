@@ -1,15 +1,23 @@
 {% extends 'SheikhuLibraryBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>Categorie creation</h1>
+    {% embed "@SheikhuLibrary/Embed/grid.html.twig" with { size: 4 } %}
 
-    {{ form(form) }}
+        {% set title = "Categorie creation" %}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('categories') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+        {% block grid_content %}
+
+            {{ form_start(form) }}
+            <div class="mws-form-inline">
+
+                {{ form_row(form.nom) }}
+
+                <div class="mws-button-row">
+                    {{ form_widget(form.submit) }}
+                    {{ macros.btn_link_to('Retour à la liste', 'categories', {}, {'class': 'btn btn-info'}) }}
+                </div>
+            </div>
+            {{ form_end(form) }}
+        {% endblock %}
+    {% endembed %}
 {% endblock %}

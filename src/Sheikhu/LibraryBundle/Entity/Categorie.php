@@ -5,7 +5,7 @@ namespace Sheikhu\LibraryBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Categorie
@@ -31,6 +31,8 @@ class Categorie
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(min="3")
      */
     private $nom;
 

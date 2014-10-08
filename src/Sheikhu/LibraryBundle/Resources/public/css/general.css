@@ -1,12 +1,17 @@
-input[type="text"], textarea{
+/*input[type="text"], textarea{
     border-left: 0px solid #c5d52b;
     transition: 0.2s;
 }
 input[type="text"]:focus, textarea:focus{
     border-left: 4px solid #c5d52b;
     transition: 0.1s;
-}
+}*/
 
+.btn{
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
 .icon-spin {
     animation: spin 2s infinite alternate;
 }
