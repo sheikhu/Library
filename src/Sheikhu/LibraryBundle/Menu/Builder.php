@@ -21,14 +21,16 @@ class Builder extends ContainerAware
         $menu = $factory->createItem('root');
 
         // Home
-        $menu->addChild('home', array('route' => 'home', 'label' => 'layout.home'));
+        $menu->addChild('home', array('route' => 'home', 'label' => 'home'));
         $menu['home']->setAttributes(array('icon' => 'icon-home-2'));
 
         // livres
-        $menu->addChild('livres', array('route' => 'livres', 'label' => 'layout.books'));
-        $menu['livres']->setAttributes(array('icon' => 'icon-book'));
+        $menu->addChild('livres', array('route' => 'livres', 'label' => 'livres'))
+            ->setAttributes(array('icon' => 'icon-book', 'domain' => 'livres'));
 
-        $menu['livres']->addChild('livres_list', array('route' => 'livres', 'label' => 'Tous les livres'));
+        $menu['livres']->addChild('livres_list', array('route' => 'livres', 'label' => 'Tous les livres'))
+            ->setAttributes(array('domain' => 'livres'));
+
         $menu['livres']->addChild('livres_new', array(
                 'route' => 'livres_new',
                 'label' => 'Ajouter un livre')

@@ -112,7 +112,8 @@
         {{ block('label') }}
         <b class="caret"></b>
     </a>
+
 {% endblock %}
 
-{% block label %}{{ item.label|trans }}{% endblock %}
+{% block label %}{{ item.label | trans({}, item.attribute('domain')|default('messages')) }}{% endblock %}
 

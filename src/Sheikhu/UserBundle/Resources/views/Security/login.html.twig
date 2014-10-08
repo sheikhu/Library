@@ -1,0 +1,61 @@
+{% extends "SheikhuUserBundle::layout.html.twig" %}
+{% block styles %}
+    {% stylesheets filter="cssrewrite"
+    "bundles/sheikhulibrary/mws/css/fonts/ptsans/stylesheet.css"
+    "bundles/sheikhulibrary/mws/css/fonts/icomoon/style.css"
+    "bundles/sheikhulibrary/mws/css/login.css"
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+    <div id="mws-login-wrapper">
+        <div id="mws-login">
+            <h1>{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</h1>
+            <div class="mws-login-lock"><i class="icon-lock"></i></div>
+            <div id="mws-login-form">
+                <form class="mws-form" action="{{ path('fos_user_security_login') }}" method="post">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    <div class="mws-form-row">
+                        <div class="mws-form-item">
+                            <input type="text" id="username" name="_username" class="mws-login-username required" placeholder="{{ 'security.login.username'|trans }}">
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <div class="mws-form-item">
+                            <input type="password" id="password" name="_password" class="mws-login-password required" placeholder="{{ 'security.login.password'|trans }}">
+                        </div>
+                    </div>
+                    <div id="mws-login-remember" class="mws-form-row mws-inset">
+                        <ul class="mws-form-list inline">
+                            <li>
+                                <input id="remember_me" name="_remember_me" type="checkbox" value="on">
+                                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mws-form-row">
+                        <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="btn btn-success mws-login-button"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
+{% block scripts %}
+    {{ parent() }}
+
+    {% javascripts
+        "bundles/sheikhulibrary/mws/js/libs/jquery.placeholder.min.js"
+        "bundles/sheikhulibrary/mws/custom-plugins/fileinput.min.js"
+        "bundles/sheikhulibrary/mws/jui/js/jquery-ui-effects.min.js"
+        "bundles/sheikhulibrary/mws/plugins/validate/jquery.validate-min.js"
+        "bundles/sheikhulibrary/mws/js/core/login.js"
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
