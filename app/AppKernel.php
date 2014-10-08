@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new \FOS\UserBundle\FOSUserBundle(),
             new Sheikhu\UserBundle\SheikhuUserBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle()
 
         );
 

@@ -1,29 +1,5 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>App</title>
-</head>
-<body>
-<div>
-    Hello {{ name }}!
-</div>
-<hr/>
+{% extends "@SheikhuLibrary/layout.html.twig" %}
 
-<b>Books</b> :
-<ul>
-    {% for b in data %}
-        <li>
-            {{ b.titre }} dans <a href="#">{{  b.categorie.nom }}</a>
-            <ul>
-                <li><b>Code</b>: {{ b.isbn }} </li>
-                <li><b>Editeur</b>: {{ b.maisonEdition.nom }}</li>
-                <li><b>Exemplaires</b> : {{ b.exemplaires | length }} </li>
-                <li><b>Synopsis:</b> {{  b.synopsis }}</li>
-            </ul>
-        </li>
-    {% endfor %}
-</ul>
+{% block content %}
 
-</body>
-</html>
+{% endblock %}

@@ -11,3 +11,4 @@
 /composer.phar
 /.idea/
 *~
+src/Sheikhu/LibraryBundle/Resources/public/mws

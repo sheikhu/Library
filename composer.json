@@ -19,7 +19,9 @@
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "dev-master",
-        "knplabs/doctrine-behaviors": "dev-master"
+        "knplabs/doctrine-behaviors": "dev-master",
+        "knplabs/knp-menu": "2.0.*@dev",
+        "knplabs/knp-menu-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

@@ -6,6 +6,6 @@ sheikhu_library_categories:
     resource: "@SheikhuLibraryBundle/Resources/config/routing/categorie.yml"
     prefix:   /categories
 
-sheikhu_library_homepage:
-    path:     /hello/{name}
+home:
+    path:     /
     defaults: { _controller: SheikhuLibraryBundle:Default:index }

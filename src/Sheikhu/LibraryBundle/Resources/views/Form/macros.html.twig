@@ -1,0 +1,8 @@
+{% macro link(href, attr, icon)%}
+
+{% set href = path(href|default('#')) %}
+
+<a href="{{ href }}" class="btn">
+    <i class="icon-edit"></i>
+</a>
+{% endmacro %}

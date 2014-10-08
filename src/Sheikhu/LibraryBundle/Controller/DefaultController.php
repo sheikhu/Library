@@ -11,7 +11,7 @@ class DefaultController extends Controller
     /**
      * @Template()
      */
-    public function indexAction($name)
+    public function indexAction()
     {
         $data = $this->getDoctrine()->getRepository("SheikhuLibraryBundle:Livre")->findAll();
         return compact('name', 'data');

@@ -1,0 +1,9 @@
+{% macro flashes() %}
+    {% for type, messages in app.session.flashbag.all() %}
+        {% for message in messages %}
+        <div class="mws-form-message {{ type }}">
+        {{ message|trans|capitalize }} !</strong>
+        </div>
+        {% endfor %}
+    {% endfor %}
+{% endmacro %}

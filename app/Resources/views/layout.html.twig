@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--><html lang="fr"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+
+<!-- Viewport Metatag -->
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+{% block styles %}
+    {% stylesheets
+    "bundles/sheikhulibrary/mws/bootstrap/css/bootstrap.min.css"
+    "bundles/sheikhulibrary/mws/css/fonts/ptsans/stylesheet.css"
+    "bundles/sheikhulibrary/mws/css/fonts/icomoon/style.css"
+    "bundles/sheikhulibrary/mws/css/mws-style.css"
+    "bundles/sheikhulibrary/mws/css/mws-theme.css"
+    filter="cssrewrite" output="css/compiled/main.css"
+%}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+{% endstylesheets %}
+{% endblock %}
+
+<title>{% block title %}MWS Admin - Login Page{% endblock %}</title>
+
+</head>
+{% import '::macros.html.twig' as helpers %}
+<body>
+
+    {% block body %}
+    {% endblock %}
+
+    {% block scripts %}
+        {% javascripts
+    "@SheikhuLibraryBundle/Resources/public/mws/js/libs/jquery-1.8.3.js"
+    "@SheikhuLibraryBundle/Resources/public/mws/bootstrap/js/bootstrap.min.js"
+    "@SheikhuLibraryBundle/Resources/public/mws/js/libs/jquery.placeholder.js"
+    "@SheikhuLibraryBundle/Resources/public/mws/jui/js/jquery-ui-effects.min.js"
+    "@SheikhuLibraryBundle/Resources/public/mws/plugins/validate/jquery.validate-min.js"
+    output="js/compiled/main.js"
+    %}
+    <script src="{{ asset_url }}"></script>
+    {%  endjavascripts %}
+    {% endblock %}
+</body>
+</html>
