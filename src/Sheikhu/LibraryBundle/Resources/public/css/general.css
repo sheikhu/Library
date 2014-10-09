@@ -7,6 +7,9 @@ input[type="text"]:focus, textarea:focus{
     transition: 0.1s;
 }*/
 
+.mws-table tr td {
+    text-align: center;
+}
 .btn{
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;

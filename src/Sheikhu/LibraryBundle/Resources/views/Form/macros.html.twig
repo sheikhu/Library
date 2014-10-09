@@ -1,14 +1,24 @@
-{% macro link(href, attr, icon) %}
+{% macro link_icon(title, path, params, icon) %}
 
-{% set href = path(href|default('#')) %}
+{% set href = path(path|default('#'), params) %}
 
-<a href="{{ href }}" class="btn">
-    <i class="icon-edit"></i>
+<a href="{{ href }}" title="title" class="btn">
+    <i class="icon-{{ icon }}"></i>
 </a>
 {% endmacro %}
 
 {% macro btn_link_to(label, path, params, attr) %}
-    <a href="{{ path(path, params) }}" {% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+    <a href="{{ path(path, params) }}" {{ block('render_attr') }}>
     {{ label | trans }}
     </a>
 {% endmacro %}
+
+{% macro link_to(label, path, params, attr) %}
+    <a href="{{ path(path, params) }}" {{ block('render_attr') }}>
+    {{ label | trans }}
+    </a>
+{% endmacro %}
+
+{% block render_attr %}
+    {% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}
+{% endblock %}

@@ -4,6 +4,7 @@ namespace Sheikhu\LibraryBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
  * Livre
@@ -13,6 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Livre
 {
+
+    use ORMBehaviors\Timestampable\Timestampable;
+
     /**
      * @var integer
      *

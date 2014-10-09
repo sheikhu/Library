@@ -1,53 +1,50 @@
 {% extends 'SheikhuLibraryBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>Livre list</h1>
-
-    <table class=" mws-table records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Isbn</th>
-                <th>Titre</th>
-                <th>Synopsis</th>
-                <th>Dateparution</th>
-                <th>Dateacquis</th>
-                <th>Statut</th>
-                <th>Nombredisponible</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('livres_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.isbn }}</td>
-                <td>{{ entity.titre }}</td>
-                <td>{{ entity.synopsis }}</td>
-                <td>{% if entity.dateParution %}{{ entity.dateParution|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.dateAcquis %}{{ entity.dateAcquis|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ entity.statut }}</td>
-                <td>{{ entity.nombreDisponible }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('livres_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('livres_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('livres_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+    {% embed "@SheikhuLibrary/Embed/grid.html.twig" with { size: 8, title: "Liste des livre" } %}
+        {% block toolbar_top %}
+            <div class="mws-panel-toolbar">
+                <div class="btn-toolbar">
+                    <div class="btn-group">
+                        <a href="{{ path('livres_new') }}" class="btn">
+                            <i class="icol-add"></i> Ajouter un livre
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        {% block grid_content %}
+            <table class="mws-table">
+                <thead>
+                <tr>
+                    <th>Isbn</th>
+                    <th>Titre</th>
+                    <th>Dateparution</th>
+                    <th>Dateacquis</th>
+                    <th>Statut</th>
+                    <th>Nombre disponible</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td><span class="badge badge-success">{{ entity.isbn }}</span></td>
+                        <td>{{ entity.titre }}</td>
+                        <td>{% if entity.dateParution %}{{ entity.dateParution|date('Y-m-d') }}{% endif %}</td>
+                        <td>{% if entity.dateAcquis %}{{ entity.dateAcquis|date('Y-m-d') }}{% endif %}</td>
+                        <td><span class="badge badge-info">{{ entity.statut | capitalize }}</span></td>
+                        <td><span class="badge badge-info">{{ entity.nombreDisponible }}</span></td>
+                        <td>
+                            <div class="btn-group">
+                                {{ macros.link_icon('Show', 'livres_show', { 'id': entity.id }, 'search') }}
+                                {{ macros.link_icon('Edit', 'livres_edit', { 'id': entity.id },'edit') }}
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
