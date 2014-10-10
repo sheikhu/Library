@@ -1,15 +1,21 @@
 {% extends 'SheikhuLibraryBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>Livre creation</h1>
+    {% embed "@SheikhuLibrary/Embed/grid.html.twig" with { size: 8, title: "Livre creation" } %}
 
-    {{ form(form) }}
+        {% block grid_content %}
+            {{ form_start(form) }}
+            <div class="mws-form-inline">
+                {{ macros.render_form(form, ['submit']) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('livres') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+            </div>
+
+            <div class="mws-button-row">
+                {{ form_widget(form.submit, {attr: {class: 'btn btn-success'}}) }}
+                {{ macros.btn_link_to('Retour à la liste', 'livres', {}, {'class': 'btn btn-info'}) }}
+            </div>
+            {{ form_end(form) }}
+        {% endblock %}
+    {% endembed %}
+
 {% endblock %}

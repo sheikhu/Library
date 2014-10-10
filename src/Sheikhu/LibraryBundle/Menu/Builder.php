@@ -25,17 +25,29 @@ class Builder extends ContainerAware
         $menu['home']->setAttributes(array('icon' => 'icon-home-2'));
 
         // livres
-        $menu->addChild('livres', array('route' => 'livres', 'label' => 'livres'))
+        $menu->addChild('livres', array('uri' => '#', 'label' => 'livres'))
             ->setAttributes(array('icon' => 'icon-book', 'domain' => 'livres'));
 
         $menu['livres']->addChild('livres_list', array('route' => 'livres', 'label' => 'Tous les livres'))
             ->setAttributes(array('domain' => 'livres'));
+        $menu['livres']->setChildrenAttribute('class', 'closed');
 
         $menu['livres']->addChild('livres_new', array(
                 'route' => 'livres_new',
                 'label' => 'Ajouter un livre')
             );
 
+        $menu->addChild('lecteurs', ['uri' => '#', 'label' => 'Lecteurs'])
+                ->setAttributes(['icon' => 'icon-users']);
+
+        $menu['lecteurs']->addChild('inscription', ['uri' => '#', 'label' => 'Inscription']);
+        $menu['lecteurs']->setChildrenAttribute('class', 'closed');
+
+        $menu->addChild('stats', ['uri' => '#', 'label' => 'Statistiques'])
+            ->setAttributes(['icon' => 'icon-stats']);
+
+        $menu->addChild('parametres', ['uri' => '#', 'label' => 'Paramètres'])
+            ->setAttributes(['icon' => 'icon-cogs']);
         /*
         // Commandes
         $menu->addChild('commandes', array('uri' => '#', 'label' => 'Commandes'));

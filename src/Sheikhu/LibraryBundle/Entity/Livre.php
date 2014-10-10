@@ -43,7 +43,7 @@ class Livre
     /**
      * @var string
      *
-     * @ORM\Column()
+     * @ORM\Column(type="text")
      */
     private $synopsis;
     
@@ -71,7 +71,7 @@ class Livre
     /**
      * @var integer
      *
-     * @ORM\Column(name="nombreDisponible", type="string", unique=true)
+     * @ORM\Column(name="nombreDisponible", type="integer", unique=true)
      */
     private $nombreDisponible;
 

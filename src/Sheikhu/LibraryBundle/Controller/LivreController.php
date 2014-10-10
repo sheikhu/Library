@@ -43,7 +43,7 @@ class LivreController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
+            $this->get('session')->getFlashBag()->add('success', 'Created');
             return $this->redirect($this->generateUrl('livres_show', array('id' => $entity->getId())));
         }
 
@@ -172,6 +172,7 @@ class LivreController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
+            $this->get('session')->getFlashBag()->add('info', 'Updated');
 
             return $this->redirect($this->generateUrl('livres_edit', array('id' => $id)));
         }

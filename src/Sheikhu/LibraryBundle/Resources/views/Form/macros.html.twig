@@ -22,3 +22,11 @@
 {% block render_attr %}
     {% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}
 {% endblock %}
+
+{% macro render_form(form, excluded) %}
+    {% for field in form %}
+        {% if field.vars.name not in excluded %}
+            {{ form_row(field) }}
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
