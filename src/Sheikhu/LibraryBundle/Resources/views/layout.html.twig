@@ -5,6 +5,7 @@
 {% block styles %}
 
     {% stylesheets
+    "bundles/sheikhulibrary/vendors/summernote/dist/summernote.css"
     "bundles/sheikhulibrary/mws/css/icons/icol16.css"
     "bundles/sheikhulibrary/mws/css/icons/icol32.css"
     "bundles/sheikhulibrary/mws/custom-plugins/wizard/wizard.css"
@@ -15,10 +16,12 @@
     "bundles/sheikhulibrary/mws/css/themer.css"
     "bundles/sheikhulibrary/mws/plugins/select2/select2.css"
     "bundles/sheikhulibrary/css/sheikhulibrary.css"
+
     filter="cssrewrite" output="css/compiled/hash-app.css"
     %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"/>
 {{  parent() }}
 {% endblock %}
 {% block body %}
@@ -139,6 +142,7 @@
     "@SheikhuLibraryBundle/Resources/public/mws/js/demo/demo.widget.js"
     "@SheikhuLibraryBundle/Resources/public/mws/plugins/select2/select2.min.js"
     "@SheikhuLibraryBundle/Resources/public/mws/js/demo/demo.formelements.js"
+    "@SheikhuLibraryBundle/Resources/public/vendors/summernote/dist/summernote.min.js"
     "@SheikhuLibraryBundle/Resources/public/js/*"
     output="js/compiled/hash-app.js"
     %}

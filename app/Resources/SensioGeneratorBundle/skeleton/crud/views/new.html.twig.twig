@@ -1,0 +1,19 @@
+{% block extends %}
+{{ "{% extends '@SheikhuLibrary/layout.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+{{ "{% block content -%}" }}
+    {{ "{% embed '@SheikhuLibrary/Embed/grid.html.twig' with { size: 4} %}" }}
+    {{ "{% block title %}" }}{{ entity }} creation {{ "{% endblock %}" }}
+
+    {{ "{% block grid_content %}" }}
+    {{ '{{ form(form) }}' }}
+
+    {% set hide_edit, hide_delete = true, true %}
+    {% include 'crud/views/others/record_actions.html.twig.twig' %}
+    {{ "{% endblock %}" }}
+
+    {{ "{% endembed %}" }}
+{{ "{% endblock %}" }}
+{% endblock body %}

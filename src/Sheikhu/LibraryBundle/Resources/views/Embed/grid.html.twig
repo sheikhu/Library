@@ -1,9 +1,10 @@
+{% set padding = padding | default(false) %}
 <div class="mws-panel grid_{{ size |default(4) }}">
     <div class="mws-panel-header">
-        <span>{{ title }}</span>
+        <span>{% block title "Title" %}</span>
     </div>
     {% block toolbar_top %}{% endblock %}
-    <div class="mws-panel-body no-padding">
+    <div class="mws-panel-body {% if not padding %} no-padding{% endif %}">
         {% block grid_content %}
 
         {% endblock %}

@@ -17,7 +17,9 @@ class LivreType extends AbstractType
         $builder
             ->add('isbn')
             ->add('titre')
-            ->add('synopsis')
+            ->add('synopsis', null, [
+                'attr'  =>  ['class' => 'summernote']
+            ])
             ->add('dateParution')
             ->add('dateAcquis')
             ->add('statut')

@@ -1,6 +1,18 @@
 {% extends "@SheikhuLibrary/layout.html.twig" %}
 
 {% block content %}
-{% embed "@SheikhuLibrary/Embed/summary.html.twig" %}
+
+{% embed "@SheikhuLibrary/Embed/grid.html.twig" with { size: 5, title: "Charts", padding:false} %}
+    {% block grid_content %}
+        <canvas id="chart"></canvas>
+    {% endblock %}
 {% endembed %}
+
+{% embed "@SheikhuLibrary/Embed/grid.html.twig" with { size: 3, title: "Summary"} %}
+    {% block grid_content %}
+        {% embed "@SheikhuLibrary/Embed/summary.html.twig" %}
+        {% endembed %}
+    {% endblock %}
+{% endembed %}
+
 {% endblock %}
