@@ -1,0 +1,39 @@
+{% extends '@SheikhuLibrary/layout.html.twig' %}
+
+    {% block content -%}
+
+    {% embed '@SheikhuLibrary/Embed/grid.html.twig' with { size: 4} %}
+
+    {% block title %}
+    MaisonEdition list
+    {% endblock %}
+
+    {% block grid_content %}
+    <table class="mws-table">
+        <thead>
+        <tr>
+                <th>Id</th>
+                <th>Nom</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+        <tr>
+                    <td><a href="{{ path('editeurs_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{{ entity.nom }}</td>
+                    <td>
+<div class="btn-group">
+        {{ macros.link_icon('show', 'editeurs_show', { 'id': entity.id }, 'search') }}
+        {{ macros.link_icon('edit', 'editeurs_edit', { 'id': entity.id }, 'edit') }}
+</div>
+                    </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+
+    {% endembed %}
+
+    {% endblock %}

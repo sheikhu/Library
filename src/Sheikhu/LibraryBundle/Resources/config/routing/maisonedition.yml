@@ -1,0 +1,30 @@
+editeurs:
+    path:     /
+    defaults: { _controller: "SheikhuLibraryBundle:MaisonEdition:index" }
+
+editeurs_show:
+    path:     /{id}/show
+    defaults: { _controller: "SheikhuLibraryBundle:MaisonEdition:show" }
+
+editeurs_new:
+    path:     /new
+    defaults: { _controller: "SheikhuLibraryBundle:MaisonEdition:new" }
+
+editeurs_create:
+    path:     /create
+    defaults: { _controller: "SheikhuLibraryBundle:MaisonEdition:create" }
+    requirements: { _method: post }
+
+editeurs_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SheikhuLibraryBundle:MaisonEdition:edit" }
+
+editeurs_update:
+    path:     /{id}/update
+    defaults: { _controller: "SheikhuLibraryBundle:MaisonEdition:update" }
+    requirements: { _method: post|put }
+
+editeurs_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SheikhuLibraryBundle:MaisonEdition:delete" }
+    requirements: { _method: post|delete }

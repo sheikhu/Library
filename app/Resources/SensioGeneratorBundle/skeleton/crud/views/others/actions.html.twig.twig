@@ -1,12 +1,10 @@
+{% set icons = ['search', 'edit'] %}
 
-                <ul>
+<div class="btn-group">
 
-                {%- for action in record_actions %}
+    {%- for action in record_actions %}
 
-                    <li>
-                        <a href="{{ "{{ path('" ~ route_name_prefix ~ "_" ~ action ~ "', { 'id': entity."~ identifier ~" }) }}" }}">{{ action }}</a>
-                    </li>
+        {{ "{{ macros.link_icon('" ~ action ~ "', '" ~ route_name_prefix ~ "_" ~ action ~"', { 'id': entity."~identifier~" }, '"~icons[loop.index-1]~"') }}" }}
+    {%- endfor %}
 
-                {%- endfor %}
-
-                </ul>
+</div>
