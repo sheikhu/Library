@@ -226,4 +226,11 @@ class Exemplaire
     {
         return $this->prets;
     }
+
+    public function __toString()
+    {
+        return $this->livre->getTitre();
+    }
+
+
 }

@@ -8,10 +8,17 @@
     {{ "{% block title %}" }}{{ entity }} creation {{ "{% endblock %}" }}
 
     {{ "{% block grid_content %}" }}
-    {{ '{{ form(form) }}' }}
+    {{ '{{ form_start(form) }}' }}
+    <div class="mws-form-inline">
+        {{ "{{ macros.render_form(form, ['submit']) }}" }}
+    </div>
 
-    {% set hide_edit, hide_delete = true, true %}
-    {% include 'crud/views/others/record_actions.html.twig.twig' %}
+    <div class="mws-button-row">
+        {{ "{{ form_widget(form.submit, {attr: {class: 'btn btn-success'}}) }}" }}
+        {{ "{{ macros.btn_link_to('Retour à la liste', 'livres', {}, {'class': 'btn btn-info'}) }}" }}
+    </div>
+
+
     {{ "{% endblock %}" }}
 
     {{ "{% endembed %}" }}

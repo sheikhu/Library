@@ -1,14 +1,36 @@
 {% block extends %}
-{{ "{% extends '::base.html.twig' %}" }}
+    {{ "{% extends '@SheikhuLibrary/layout.html.twig' %}" }}
 {% endblock extends %}
 
 {% block body %}
-{{ "{% block body -%}" }}
-    <h1>{{ entity }} edit</h1>
+    {{ "{% block content -%}" }}
+    {{ "{% embed '@SheikhuLibrary/Embed/grid.html.twig' with { size: 4} %}" }}
+    {{ "{% block title %}" }}{{ entity }} creation {{ "{% endblock %}" }}
 
-    {{ '{{ form(edit_form) }}' }}
+    {{ "{% block grid_content %}" }}
+    {{ '{{ form_start(edit_form) }}' }}
+    <div class="mws-form-inline">
+        {{ "{{ macros.render_form(edit_form, ['submit']) }}" }}
+    </div>
 
-    {% set hide_edit, hide_delete = true, false %}
-    {% include 'crud/views/others/record_actions.html.twig.twig' %}
-{{ "{% endblock %}" }}
+    <div class="mws-button-row">
+        {{ "{{ form_widget(edit_form.submit, {attr: {class: 'btn btn-success'}}) }}" }}
+        {{ "{{ macros.btn_link_to('Retour à la liste', 'livres', {}, {'class': 'btn btn-info'}) }}" }}
+    </div>
+
+
+    {{ "{% endblock %}" }}
+
+    {{ "{% block toolbar_bottom %}" }}
+        <div class="mws-panel-toolbar">
+            <div class="btn-group dropup">
+                {{ "{{ form_start(delete_form) }}" }}
+                {{ "{{ form_row(delete_form.submit, {'attr': {class: 'btn-danger'}}) }}" }}
+                {{ "{{ form_end(delete_form) }}" }}
+            </div>
+        </div>
+    {{ "{% endblock %}" }}
+
+    {{ "{% endembed %}" }}
+    {{ "{% endblock %}" }}
 {% endblock body %}

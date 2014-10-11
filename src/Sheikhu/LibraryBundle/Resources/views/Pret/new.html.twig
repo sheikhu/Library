@@ -1,0 +1,20 @@
+{% extends '@SheikhuLibrary/layout.html.twig' %}
+
+{% block content -%}
+    {% embed '@SheikhuLibrary/Embed/grid.html.twig' with { size: 4} %}
+    {% block title %}Pret creation {% endblock %}
+
+    {% block grid_content %}
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('prets') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+    {% endblock %}
+
+    {% endembed %}
+{% endblock %}
