@@ -2,13 +2,15 @@
 
 {% block content %}
 
-{% embed "@SheikhuLibrary/Embed/grid.html.twig" with { size: 5, title: "Charts", padding:false} %}
+{% embed "@SheikhuLibrary/Embed/grid.html.twig" with { size: 5, padding:false} %}
+    {% block title "Charts" %}
     {% block grid_content %}
         <canvas id="chart"></canvas>
     {% endblock %}
 {% endembed %}
 
-{% embed "@SheikhuLibrary/Embed/grid.html.twig" with { size: 3, title: "Summary"} %}
+{% embed "@SheikhuLibrary/Embed/grid.html.twig" with { size: 3} %}
+    {% block title "Summary" %}
     {% block grid_content %}
         {% embed "@SheikhuLibrary/Embed/summary.html.twig" %}
         {% endembed %}

@@ -43,11 +43,21 @@ class Builder extends ContainerAware
         $menu['lecteurs']->addChild('inscription', ['uri' => '#', 'label' => 'Inscription']);
         $menu['lecteurs']->setChildrenAttribute('class', 'closed');
 
+        $menu->addChild('prets', array('uri' => '#', 'label' => 'Prets'));
+        $menu['prets']->setAttributes(array('icon' => 'icon-bended-arrow-left'));
+
+        $menu['prets']->addChild('liste_prets', ['uri' => '#', 'label' => 'Tous les prets']);
+        $menu['prets']->addChild('pret_new', ['uri' => '#', 'label' => 'Nouveau pret']);
+        $menu['prets']->addChild('retours', ['uri' => '#', 'label' => 'Retours']);
+
+
         $menu->addChild('stats', ['uri' => '#', 'label' => 'Statistiques'])
             ->setAttributes(['icon' => 'icon-stats']);
 
         $menu->addChild('parametres', ['uri' => '#', 'label' => 'Paramètres'])
             ->setAttributes(['icon' => 'icon-cogs']);
+
+
         /*
         // Commandes
         $menu->addChild('commandes', array('uri' => '#', 'label' => 'Commandes'));

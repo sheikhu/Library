@@ -27,7 +27,11 @@
             <li>
                 <span class="key"><i class="icon-key"></i> Last Sign In</span>
                 <span class="val">
-                    <span class="text-nowrap">September 21, 2012</span>
+                    {% if app.user %}
+                        <span class="text-nowrap">{{ app.user.lastLogin | date('m d, Y') }}</span>
+                    {% else %}
+                        <span class="text-nowrap">September 21, 2012</span>
+                    {% endif %}
                 </span>
             </li>
             <li>

@@ -13,11 +13,13 @@
 
 {% block body %}
     <div id="mws-login-wrapper">
+
+
         <div id="mws-login">
             <h1>{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</h1>
             <div class="mws-login-lock"><i class="icon-lock"></i></div>
             <div id="mws-login-form">
-                <form class="mws-form" action="{{ path('fos_user_security_login') }}" method="post">
+                <form class="mws-form" action="{{ path('fos_user_security_check') }}" method="post">
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                     <div class="mws-form-row">
                         <div class="mws-form-item">
@@ -37,6 +39,9 @@
                             </li>
                         </ul>
                     </div>
+                    {% if error %}
+                        <span class="text-error">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+                    {% endif %}
                     <div class="mws-form-row">
                         <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="btn btn-success mws-login-button"/>
                     </div>

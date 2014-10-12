@@ -153,7 +153,10 @@
                 <!-- Username and Functions -->
                 <div id="mws-user-functions">
                     <div id="mws-username">
-                        {{ 'layout.welcome' | trans({'%user%': app.user}, 'SheikhuUserBundle')}}
+
+                            {{ 'welcome' | trans({'%username%': app.user | default('John')}) }}
+
+
                     </div>
                     <ul>
                         <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
