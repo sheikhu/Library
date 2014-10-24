@@ -1,3 +1,7 @@
+sheikhu_library_membre:
+    resource: "@SheikhuLibraryBundle/Resources/config/routing/membre.yml"
+    prefix:   /membre
+
 sheikhu_library_editeurs:
     resource: "@SheikhuLibraryBundle/Resources/config/routing/maisonedition.yml"
     prefix:   /editeurs

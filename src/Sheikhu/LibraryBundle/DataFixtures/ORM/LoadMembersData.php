@@ -14,8 +14,9 @@ use Doctrine\Common\DataFixtures\Doctrine;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
+use Sheikhu\LibraryBundle\Entity\Membre;
 use Sheikhu\UserBundle\Entity\Employe;
-use Sheikhu\UserBundle\Entity\Membre;
+
 
 class LoadMembersData extends AbstractFixture implements OrderedFixtureInterface {
     /**
@@ -26,27 +27,35 @@ class LoadMembersData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create();
-        foreach(range(1,10) as $i)
+        foreach(range(1,30) as $i)
         {
-            if($faker->boolean())
-            {
-                $member = new Membre();
-            } else {
-                $member = new Employe();
-            }
 
-            $member->setUsername($faker->userName)
-                ->setNom($faker->lastName)
+            $member = new Membre();
+
+
+            $member->setNom($faker->lastName)
                 ->setPrenom($faker->firstName)
                 ->setTelephone($faker->randomNumber(7))
                 ->setDateNaissance($faker->dateTime)
                 ->setCode($faker->randomNumber(6))
-                ->setEmail($faker->email)
-                ->setPlainPassword("password")
-                ->setEnabled(true);
+                ->setEmail($faker->email);
 
             $manager->persist($member);
         }
+
+        $user = new Employe();
+
+        $user->setUsername($faker->userName)
+            ->setNom($faker->lastName)
+            ->setPrenom($faker->firstName)
+            ->setTelephone($faker->randomNumber(7))
+            ->setDateNaissance($faker->dateTime)
+            ->setCode($faker->randomNumber(6))
+            ->setEmail($faker->email)
+            ->setPlainPassword("password")
+            ->setEnabled(true);
+
+        $manager->persist($member);
 
         $manager->flush();
     }

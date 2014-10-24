@@ -1,0 +1,5 @@
+services:
+    acme_user.registration.form.type:
+        class: Sheikhu\UserBundle\Form\Type\MembreType
+        tags:
+            - { name: form.type, alias: membre_registration }

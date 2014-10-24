@@ -31,7 +31,7 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(unique=true)
+     * @ORM\Column(unique=true, nullable=true)
      */
     private $code;
 

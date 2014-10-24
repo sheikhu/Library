@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Membre
  * @package Sheikhu\UserBundle\Entity
  *
- * @ORM\Entity
+ *
  * @ORM\Table(name="membres")
  */
 class Membre extends User{

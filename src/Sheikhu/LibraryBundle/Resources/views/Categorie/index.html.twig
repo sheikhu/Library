@@ -54,18 +54,7 @@
 {{ parent() }}
     <script>
         if( $.fn.dataTable ) {
-            $("#categories-table").dataTable(
-                    {
-                        "processing": true,
-                        "serverSide": true,
-                        "ajax": "{{ path('categories') }}",
-                        "columns": [
-                            { "data": "id" },
-                            { "data": "nom" },
-                        ]
-
-                    }
-            );
+            $("#categories-table").dataTable();
 
         }
     </script>
