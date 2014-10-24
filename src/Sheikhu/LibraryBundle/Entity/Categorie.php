@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Categorie
  *
- * @ORM\Table()
+ * @ORM\Table(name="categories")
  * @ORM\Entity
  */
 class Categorie

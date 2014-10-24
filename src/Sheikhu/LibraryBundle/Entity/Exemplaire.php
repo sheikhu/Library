@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Exemplaire
  *
- * @ORM\Table()
+ * @ORM\Table(name="exemplaires")
  * @ORM\Entity
  */
 class Exemplaire
@@ -25,7 +25,7 @@ class Exemplaire
     /**
      * @var string
      *
-     * @ORM\Column(name="code", type="string", length=255)
+     * @ORM\Column(name="code", type="string", length=255, unique=true)
      */
     private $code;
 

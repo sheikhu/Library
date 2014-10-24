@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Pret
  *
- * @ORM\Table()
+ * @ORM\Table(name="prets")
  * @ORM\Entity
  */
 class Pret

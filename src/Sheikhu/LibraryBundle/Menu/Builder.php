@@ -37,7 +37,7 @@ class Builder extends ContainerAware
                 'label' => 'Ajouter un livre')
             );
 
-        $menu->addChild('lecteurs', ['uri' => '#', 'label' => 'Lecteurs'])
+        $menu->addChild('lecteurs', ['uri' => '#', 'label' => 'Membres'])
                 ->setAttributes(['icon' => 'icon-users']);
 
         $menu['lecteurs']->addChild('inscription', ['uri' => '#', 'label' => 'Inscription']);
@@ -46,8 +46,8 @@ class Builder extends ContainerAware
         $menu->addChild('prets', array('uri' => '#', 'label' => 'Prets'));
         $menu['prets']->setAttributes(array('icon' => 'icon-bended-arrow-left'));
 
-        $menu['prets']->addChild('liste_prets', ['uri' => '#', 'label' => 'Tous les prets']);
-        $menu['prets']->addChild('pret_new', ['uri' => '#', 'label' => 'Nouveau pret']);
+        $menu['prets']->addChild('liste_prets', ['route' => 'prets', 'label' => 'Tous les prets']);
+        $menu['prets']->addChild('pret_new', ['route' => 'prets_new', 'label' => 'Nouveau pret']);
         $menu['prets']->addChild('retours', ['uri' => '#', 'label' => 'Retours']);
 
 

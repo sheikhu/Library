@@ -19,7 +19,7 @@
 
         {% block grid_content %}
 
-                <table class="mws-table">
+                <table id="categories-table" class="mws-table">
                     <thead>
                     <tr>
                         <th>Nom</th>
@@ -48,4 +48,25 @@
 
         {% endblock %}
     {% endembed %}
+{% endblock %}
+
+{% block scripts %}
+{{ parent() }}
+    <script>
+        if( $.fn.dataTable ) {
+            $("#categories-table").dataTable(
+                    {
+                        "processing": true,
+                        "serverSide": true,
+                        "ajax": "{{ path('categories') }}",
+                        "columns": [
+                            { "data": "id" },
+                            { "data": "nom" },
+                        ]
+
+                    }
+            );
+
+        }
+    </script>
 {% endblock %}

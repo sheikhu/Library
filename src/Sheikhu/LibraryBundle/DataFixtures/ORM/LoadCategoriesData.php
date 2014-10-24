@@ -33,7 +33,7 @@ class LoadCategoriesData extends AbstractFixture implements OrderedFixtureInterf
 
         $this->addReference("aventure", $categorie);
 
-        foreach(range(1, 10) as $i)
+        foreach(range(1, 30) as $i)
         {
             $categorie = new Categorie();
             $categorie->setNom($faker->sentence(2));

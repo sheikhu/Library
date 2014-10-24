@@ -9,7 +9,7 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 /**
  * Livre
  *
- * @ORM\Table()
+ * @ORM\Table(name="livres")
  * @ORM\Entity(repositoryClass="Sheikhu\LibraryBundle\Entity\LivreRepository")
  */
 class Livre

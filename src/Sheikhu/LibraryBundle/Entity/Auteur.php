@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Auteur
  *
- * @ORM\Table()
+ * @ORM\Table(name="auteurs")
  * @ORM\Entity
  */
 class Auteur

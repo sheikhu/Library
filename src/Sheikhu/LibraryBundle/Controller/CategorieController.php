@@ -26,7 +26,7 @@ class CategorieController extends Controller
         $entities = $em->getRepository('SheikhuLibraryBundle:Categorie')->findAll();
 
         return $this->render('SheikhuLibraryBundle:Categorie:index.html.twig', array(
-            'entities' => $entities,
+            'entities' => array_slice($entities, 0, 10),
         ));
     }
     /**
