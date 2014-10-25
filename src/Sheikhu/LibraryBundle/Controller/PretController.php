@@ -2,6 +2,8 @@
 
 namespace Sheikhu\LibraryBundle\Controller;
 
+
+use Sheikhu\LibraryBundle\Entity\Membre;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -76,14 +78,16 @@ class PretController extends Controller
      * Displays a form to create a new Pret entity.
      *
      */
-    public function newAction()
+    public function newAction(Membre $membre)
     {
         $entity = new Pret();
+        $entity->setMembre($membre);
         $form   = $this->createCreateForm($entity);
 
         return $this->render('SheikhuLibraryBundle:Pret:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
+            'membre'    =>  $membre
         ));
     }
 
@@ -206,6 +210,22 @@ class PretController extends Controller
     }
 
     /**
+     * Rendre les livres empruntés
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function retourAction(Request $request, Pret $pret)
+    {
+        $pret->setDateRetour(new \DateTime());
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->flush();
+
+        return $this->redirect($request->headers->get('referer'));
+
+    }
+
+    /**
      * Creates a form to delete a Pret entity by id.
      *
      * @param mixed $id The entity id
@@ -221,4 +241,6 @@ class PretController extends Controller
             ->getForm()
         ;
     }
+
+
 }

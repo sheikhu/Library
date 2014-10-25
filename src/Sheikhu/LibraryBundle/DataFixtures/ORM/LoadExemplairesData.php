@@ -27,21 +27,27 @@ class LoadExemplairesData extends AbstractFixture implements OrderedFixtureInter
     {
         $faker = Factory::create();
 
-        $book = $this->getReference("ile-mysterieuse");
-        $exemplaire = new Exemplaire();
+        foreach (['ile-mysterieuse', 'dale' ] as $bookRef) {
+            $book = $this->getReference($bookRef);
+            $exemplaire = new Exemplaire();
 
-        $exemplaire->setLivre($book);
+            $exemplaire->setLivre($book);
 
-        $exemplaire->setDateAcquis($faker->dateTime)
-            ->setCode($faker->ean8)
-            ->setCout(5000)
-            ->setEtat("parfait");
+            $exemplaire->setDateAcquis($faker->dateTime)
+                ->setCode($faker->ean8)
+                ->setCout(5000)
+                ->setEtat("parfait");
 
-        $exemplaire->getLivre()->addExemplaire($exemplaire);
+            $exemplaire->getLivre()->addExemplaire($exemplaire);
 
-        $manager->persist($exemplaire);
-        $manager->persist($book);
-        $manager->flush();
+            $manager->persist($exemplaire);
+            $manager->persist($book);
+            $manager->flush();
+
+            $this->addReference("exemplaire-$bookRef", $exemplaire);
+        }
+
+
     }
 
     /**

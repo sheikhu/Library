@@ -46,7 +46,7 @@ class Exemplaire
     /**
      * @var string
      *
-     * @ORM\Column(name="etat", type="string", length=255)
+     * @ORM\Column(name="etat", type="string", length=255, nullable=true)
      */
     private $etat;
 

@@ -15,10 +15,12 @@ class PretType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('membre', null, array(
+                'disabled' => true
+            ))
             ->add('exemplaires')
             ->add('dateRetourPrevue', 'date')
-            ->add('dateRetour')
-            ->add('etat')
+
         ;
     }
     

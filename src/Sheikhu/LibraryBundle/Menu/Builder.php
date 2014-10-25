@@ -40,6 +40,7 @@ class Builder extends ContainerAware
         $menu->addChild('lecteurs', ['uri' => '#', 'label' => 'Membres'])
                 ->setAttributes(['icon' => 'icon-users']);
 
+        $menu['lecteurs']->addChild('liste_membres', ['route' => 'membre', 'label' => 'Liste des membres']);
         $menu['lecteurs']->addChild('inscription', ['uri' => '#', 'label' => 'Inscription']);
         $menu['lecteurs']->setChildrenAttribute('class', 'closed');
 
@@ -47,7 +48,7 @@ class Builder extends ContainerAware
         $menu['prets']->setAttributes(array('icon' => 'icon-bended-arrow-left'));
 
         $menu['prets']->addChild('liste_prets', ['route' => 'prets', 'label' => 'Tous les prets']);
-        $menu['prets']->addChild('pret_new', ['route' => 'prets_new', 'label' => 'Nouveau pret']);
+        //$menu['prets']->addChild('pret_new', ['route' => 'prets_new', 'label' => 'Nouveau pret']);
         $menu['prets']->addChild('retours', ['uri' => '#', 'label' => 'Retours']);
 
 

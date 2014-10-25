@@ -2,6 +2,7 @@
 
 namespace Sheikhu\LibraryBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -9,7 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * Membre
  *
- * @ORM\Table()
+ * @ORM\Table(name="membres")
  * @ORM\Entity(repositoryClass="Sheikhu\LibraryBundle\Entity\MembreRepository")
  * @UniqueEntity("code")
  */
@@ -28,6 +29,7 @@ class Membre
      * @var string
      *
      * @ORM\Column(name="code", type="string", length=255, unique=true, nullable=true)
+     *
      */
     private $code;
 
@@ -65,7 +67,12 @@ class Membre
      */
     private $email;
 
-
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Sheikhu\LibraryBundle\Entity\Pret", mappedBy="membre")
+     */
+    protected $prets;
     /**
      * Get id
      *
@@ -213,4 +220,56 @@ class Membre
     {
         return $this->telephone;
     }
+
+    public function fullName()
+    {
+        return $this->prenom . " " . $this->nom;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->prets = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add prets
+     *
+     * @param \Sheikhu\LibraryBundle\Entity\Pret $prets
+     * @return Membre
+     */
+    public function addPret(\Sheikhu\LibraryBundle\Entity\Pret $prets)
+    {
+        $this->prets[] = $prets;
+
+        return $this;
+    }
+
+    /**
+     * Remove prets
+     *
+     * @param \Sheikhu\LibraryBundle\Entity\Pret $prets
+     */
+    public function removePret(\Sheikhu\LibraryBundle\Entity\Pret $prets)
+    {
+        $this->prets->removeElement($prets);
+    }
+
+    /**
+     * Get prets
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPrets()
+    {
+        return $this->prets;
+    }
+
+    public function __toString()
+    {
+        return $this->fullName();
+    }
+
+
 }

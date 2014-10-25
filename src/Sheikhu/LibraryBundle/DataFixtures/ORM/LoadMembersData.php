@@ -15,7 +15,9 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 use Sheikhu\LibraryBundle\Entity\Membre;
+use Sheikhu\LibraryBundle\Entity\Pret;
 use Sheikhu\UserBundle\Entity\Employe;
+use Symfony\Component\Security\Core\Util\SecureRandom;
 
 
 class LoadMembersData extends AbstractFixture implements OrderedFixtureInterface {
@@ -27,6 +29,8 @@ class LoadMembersData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create();
+        $generator = new SecureRandom();
+
         foreach(range(1,30) as $i)
         {
 
@@ -35,12 +39,27 @@ class LoadMembersData extends AbstractFixture implements OrderedFixtureInterface
 
             $member->setNom($faker->lastName)
                 ->setPrenom($faker->firstName)
+                ->setCode($generator->nextBytes(6))
                 ->setTelephone($faker->randomNumber(7))
                 ->setDateNaissance($faker->dateTime)
                 ->setCode($faker->randomNumber(6))
                 ->setEmail($faker->email);
 
+            $pret = new Pret();
+
+            $n = $faker->numberBetween(4, 10);
+
+            $pret->setDatePret($faker->dateTime);
+            $dateRetourPrevue = $pret->getDatePret()->add(new \DateInterval("P".$n."D"));
+            $pret->setDateRetourPrevue($dateRetourPrevue)
+                ->setMembre($member)
+                ->addExemplaire($this->getReference("exemplaire-ile-mysterieuse"))
+                ->addExemplaire($this->getReference("exemplaire-dale"));
+
+
             $manager->persist($member);
+            $manager->persist($pret);
+
         }
 
         $user = new Employe();
@@ -67,7 +86,7 @@ class LoadMembersData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 1;
+        return 5;
     }
 
 

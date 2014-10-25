@@ -7,7 +7,7 @@ prets_show:
     defaults: { _controller: "SheikhuLibraryBundle:Pret:show" }
 
 prets_new:
-    path:     /new
+    path:     /{code}/new
     defaults: { _controller: "SheikhuLibraryBundle:Pret:new" }
 
 prets_create:
@@ -28,3 +28,8 @@ prets_delete:
     path:     /{id}/delete
     defaults: { _controller: "SheikhuLibraryBundle:Pret:delete" }
     requirements: { _method: post|delete }
+
+prets_retour:
+    path:   /retour/{id}
+    defaults: { _controller: "SheikhuLibraryBundle:Pret:retour" }
+    requirements: { _method: get }

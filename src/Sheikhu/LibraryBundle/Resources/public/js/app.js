@@ -8,6 +8,9 @@ $(function()
             sPaginationType: "full_numbers",
             "bRetrieve": true
         });
+    }
 
+    if( $.fn.select2 ) {
+        $("select.mws-select2").select2();
     }
 })

@@ -4,7 +4,7 @@ namespace Sheikhu\LibraryBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Pret
  *
@@ -39,24 +39,30 @@ class Pret
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateRetour", type="datetime")
+     * @ORM\Column(name="dateRetour", type="datetime", nullable=true)
      */
     private $dateRetour;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="etat", type="string", length=255)
+     * @ORM\Column(name="etat", type="string", length=255, nullable=true)
      */
     private $etat;
 
     /**
      * @var ArrayCollection
-     *
-     * @ORM\ManyToMany(targetEntity="Exemplaire", inversedBy="prets")
+     * @Assert\Count(min="1", minMessage="Vous devez emprunter au moins {{limit}} livre ou plus")
+     * @ORM\ManyToMany(targetEntity="Exemplaire", inversedBy="prets", cascade={"persist"})
      */
     private $exemplaires;
 
+    /**
+     * @var Membre
+     *
+     * @ORM\ManyToOne(targetEntity="Sheikhu\LibraryBundle\Entity\Membre", inversedBy="prets")
+     */
+    private $membre;
     /**
      * Constructor
      */
@@ -199,5 +205,33 @@ class Pret
     public function getExemplaires()
     {
         return $this->exemplaires;
+    }
+
+    /**
+     * Set membre
+     *
+     * @param \Sheikhu\LibraryBundle\Entity\Membre $membre
+     * @return Pret
+     */
+    public function setMembre(\Sheikhu\LibraryBundle\Entity\Membre $membre = null)
+    {
+        $this->membre = $membre;
+
+        return $this;
+    }
+
+    /**
+     * Get membre
+     *
+     * @return \Sheikhu\LibraryBundle\Entity\Membre 
+     */
+    public function getMembre()
+    {
+        return $this->membre;
+    }
+
+    public function estRendu()
+    {
+        return !is_null($this->dateRetour);
     }
 }

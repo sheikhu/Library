@@ -24,7 +24,7 @@
     <table class="mws-table filterable-fn">
         <thead>
         <tr>
-                <th>Id</th>
+
                 <th>Code</th>
                 <th>Nom</th>
                 <th>Prenom</th>
@@ -35,7 +35,7 @@
         <tbody>
         {% for entity in entities %}
         <tr>
-                    <td><a href="{{ path('membre_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+
                     <td>{{ entity.code }}</td>
                     <td>{{ entity.nom }}</td>
                     <td>{{ entity.prenom }}</td>
