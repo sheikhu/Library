@@ -4,6 +4,8 @@ namespace Sheikhu\LibraryBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Faker\Factory;
+use Symfony\Component\Security\Core\Util\SecureRandom;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -13,6 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="membres")
  * @ORM\Entity(repositoryClass="Sheikhu\LibraryBundle\Entity\MembreRepository")
  * @UniqueEntity("code")
+ * @UniqueEntity("telephone")
  */
 class Membre
 {
@@ -231,6 +234,12 @@ class Membre
     public function __construct()
     {
         $this->prets = new \Doctrine\Common\Collections\ArrayCollection();
+
+        if(is_null($this->code))
+        {
+            $generator = new SecureRandom();
+            $this->code = Factory::create()->randomNumber(6);
+        }
     }
 
     /**

@@ -19,4 +19,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Employe extends User{
 
+    public function fullName()
+    {
+        return $this->prenom . " " . $this->nom;
+    }
 }

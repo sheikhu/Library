@@ -16,7 +16,8 @@ class PretType extends AbstractType
     {
         $builder
             ->add('membre', null, array(
-                'disabled' => true
+                'disabled' => true,
+                'read_only' => true
             ))
             ->add('exemplaires')
             ->add('dateRetourPrevue', 'date')

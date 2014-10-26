@@ -23,7 +23,6 @@ class LivreType extends AbstractType
             ->add('dateParution')
             ->add('dateAcquis')
             ->add('statut')
-            ->add('nombreDisponible')
             ->add('categorie')
             ->add('auteurs')
             ->add('maisonEdition')

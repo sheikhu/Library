@@ -11,7 +11,7 @@ prets_new:
     defaults: { _controller: "SheikhuLibraryBundle:Pret:new" }
 
 prets_create:
-    path:     /create
+    path:     /{code}/create
     defaults: { _controller: "SheikhuLibraryBundle:Pret:create" }
     requirements: { _method: post }
 

@@ -1,5 +1,58 @@
 {% extends "@SheikhuLibrary/layout.html.twig" %}
 
+{% block stats_container %}
+    <!-- Statistics Button Container -->
+    <div class="mws-stat-container clearfix">
+
+        <!-- Statistic Item -->
+        <a class="mws-stat" href="{{ path('livres') }}">
+            <!-- Statistic Icon (edit to change icon) -->
+            <span class="mws-stat-icon icol32-book"></span>
+
+            <!-- Statistic Content -->
+                        <span class="mws-stat-content">
+                            <span class="mws-stat-title">Nombre de livres</span>
+                            <span class="mws-stat-value">{{ totalLivres }}</span>
+                        </span>
+        </a>
+
+        <a class="mws-stat" href="#">
+            <!-- Statistic Icon (edit to change icon) -->
+            <span class="mws-stat-icon icol32-arrow-up"></span>
+
+            <!-- Statistic Content -->
+                        <span class="mws-stat-content">
+                            <span class="mws-stat-title">Nombre de prêts</span>
+                            <span class="mws-stat-value up">{{ totalPrets }}</span>
+                        </span>
+        </a>
+
+        <a class="mws-stat" href="#">
+            <!-- Statistic Icon (edit to change icon) -->
+            <span class="mws-stat-icon icol32-user"></span>
+
+            <!-- Statistic Content -->
+                        <span class="mws-stat-content">
+                            <span class="mws-stat-title">Membres</span>
+                            <span class="mws-stat-value">{{ totalMembres }}</span>
+                        </span>
+        </a>
+
+        <a class="mws-stat" href="#">
+            <!-- Statistic Icon (edit to change icon) -->
+            <span class="mws-stat-icon icol32-tag-blue"></span>
+
+            <!-- Statistic Content -->
+                        <span class="mws-stat-content">
+                            <span class="mws-stat-title">Categories</span>
+                            <span class="mws-stat-value">{{ totalCategories }}</span>
+                        </span>
+        </a>
+
+
+    </div>
+{% endblock %}
+
 {% block content %}
 
 {% embed "@SheikhuLibrary/Embed/grid.html.twig" with { size: 5, padding:false} %}
@@ -10,10 +63,40 @@
 {% endembed %}
 
 {% embed "@SheikhuLibrary/Embed/grid.html.twig" with { size: 3} %}
-    {% block title "Summary" %}
+    {% block title "Profil" %}
     {% block grid_content %}
-        {% embed "@SheikhuLibrary/Embed/summary.html.twig" %}
-        {% endembed %}
+        <ul class="mws-summary clearfix">
+
+            <li>
+                <span class="key">Nom complet</span>
+                    <span class="val">
+                        <span class="text-nowrap">{{ app.user.fullName }}</span>
+                    </span>
+            </li>
+
+            <li>
+                <span class="key">Téléphone</span>
+                    <span class="val">
+                        <span class="text-nowrap">{{ app.user.telephone }}</span>
+                    </span>
+            </li>
+            <li>
+                <span class="key">Email</span>
+                    <span class="val">
+
+                            <span class="text-nowrap">{{ app.user.email }}</span>
+
+                    </span>
+            </li>
+            <li>
+                    <span class="key">
+                        <i class="icon-key"></i> Dernière connexion
+                    </span>
+                    <span class="val">
+                        <span class="text-nowrap">{{ app.user.lastLogin | date('d m Y, h:i:s') }}</span>
+                    </span>
+            </li>
+        </ul>
     {% endblock %}
 {% endembed %}
 

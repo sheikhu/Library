@@ -13,7 +13,13 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $data = $this->getDoctrine()->getRepository("SheikhuLibraryBundle:Livre")->findAll();
-        return compact('name', 'data');
+        $livres = $this->getDoctrine()->getRepository("SheikhuLibraryBundle:Livre")->findAll();
+        $em =$this->getDoctrine()->getManager();
+        $totalLivres = $em->getRepository("SheikhuLibraryBundle:Livre")->count();
+        $totalPrets = count($em->getRepository("SheikhuLibraryBundle:Pret")->findAll());
+        $totalMembres = $em->getRepository("SheikhuLibraryBundle:Membre")->count();
+        $totalCategories = count($em->getRepository("SheikhuLibraryBundle:Categorie")->findAll());
+
+        return compact('totalLivres', 'totalPrets', 'totalMembres', 'totalCategories');
     }
 }

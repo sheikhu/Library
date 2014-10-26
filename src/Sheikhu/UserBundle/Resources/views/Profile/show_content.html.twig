@@ -1,6 +1,44 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-</div>
+{% set entity = user %}
+
+{% embed "@SheikhuLibrary/Embed/grid.html.twig" with { size: 3} %}
+    {% block  title %}
+        Informations
+    {% endblock %}
+    {% block grid_content %}
+
+        <ul class="mws-summary clearfix">
+
+            <li>
+                <span class="key">Nom complet</span>
+                    <span class="val">
+                        <span class="text-nowrap">{{ entity.fullName }}</span>
+                    </span>
+            </li>
+
+            <li>
+                <span class="key">Téléphone</span>
+                    <span class="val">
+                        <span class="text-nowrap">{{ entity.telephone }}</span>
+                    </span>
+            </li>
+            <li>
+                <span class="key">Email</span>
+                    <span class="val">
+
+                            <span class="text-nowrap">{{ user.email }}</span>
+
+                    </span>
+            </li>
+            <li>
+                    <span class="key">
+                        <i class="icon-key"></i> Dernière connexion
+                    </span>
+                    <span class="val">
+                        <span class="text-nowrap">{{ user.lastLogin | date('d m Y, h:i:s') }}</span>
+                    </span>
+            </li>
+        </ul>
+    {% endblock %}
+{% endembed %}

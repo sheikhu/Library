@@ -71,7 +71,7 @@ class Livre
     /**
      * @var integer
      *
-     * @ORM\Column(name="nombreDisponible", type="integer", unique=true)
+     * @ORM\Column(name="nombreDisponible", type="integer", nullable=true)
      */
     private $nombreDisponible;
 

@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="prets")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 class Pret
 {
@@ -228,6 +229,14 @@ class Pret
     public function getMembre()
     {
         return $this->membre;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function onPrePersist()
+    {
+        $this->datePret = new \DateTime();
     }
 
     public function estRendu()

@@ -1,3 +1,5 @@
+parameters:
+    foo: 2
 services:
     acme_user.registration.form.type:
         class: Sheikhu\UserBundle\Form\Type\MembreType

@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="users")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({"user": "User", "member": "Membre", "employee" = "Employe"})
+ * @ORM\DiscriminatorMap({"user": "User", "employee" = "Employe"})
  */
 class User extends BaseUser
 {

@@ -7,6 +7,18 @@
         {% block  title %}
             Informations
         {% endblock %}
+        {% block toolbar_bottom %}
+            <div class="mws-panel-toolbar">
+                <div class="btn-toolbar">
+                    <div class="btn-group">
+                        <a href="{{ path('prets_new', {code: entity.code}) }}" class="btn">
+                            <i class="icol-add"></i> Nouveau pret
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+
         {% block grid_content %}
             <ul class="mws-summary clearfix">
                 <li>

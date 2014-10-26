@@ -12,4 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class MembreRepository extends EntityRepository
 {
+    public function count()
+    {
+        return $this->createQueryBuilder('m')
+            ->select("count(m)")
+            ->getQuery()->getSingleScalarResult();
+    }
 }

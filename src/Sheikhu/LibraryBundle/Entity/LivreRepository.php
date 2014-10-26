@@ -12,4 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class LivreRepository extends EntityRepository
 {
+    public function count()
+    {
+        return $this->createQueryBuilder('l')
+            ->select("count(l)")
+            ->getQuery()->getSingleScalarResult();
+    }
 }

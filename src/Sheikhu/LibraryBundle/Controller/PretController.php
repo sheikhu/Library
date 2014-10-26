@@ -35,9 +35,10 @@ class PretController extends Controller
      * Creates a new Pret entity.
      *
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, Membre $membre)
     {
         $entity = new Pret();
+        $entity->setMembre($membre);
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -46,7 +47,7 @@ class PretController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('prets_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('membre_show', array('id' => $membre->getId())));
         }
 
         return $this->render('SheikhuLibraryBundle:Pret:new.html.twig', array(
@@ -65,7 +66,7 @@ class PretController extends Controller
     private function createCreateForm(Pret $entity)
     {
         $form = $this->createForm(new PretType(), $entity, array(
-            'action' => $this->generateUrl('prets_create'),
+            'action' => $this->generateUrl('prets_create', ['code' => $entity->getMembre()->getCode()]),
             'method' => 'POST',
         ));
 

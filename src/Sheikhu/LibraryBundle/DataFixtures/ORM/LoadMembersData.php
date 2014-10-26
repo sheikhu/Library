@@ -64,17 +64,18 @@ class LoadMembersData extends AbstractFixture implements OrderedFixtureInterface
 
         $user = new Employe();
 
-        $user->setUsername($faker->userName)
+        $user->setUsername("sheikhu")
             ->setNom($faker->lastName)
             ->setPrenom($faker->firstName)
             ->setTelephone($faker->randomNumber(7))
             ->setDateNaissance($faker->dateTime)
             ->setCode($faker->randomNumber(6))
-            ->setEmail($faker->email)
+            ->setEmail("sheikhu02@gmail.com")
             ->setPlainPassword("password")
             ->setEnabled(true);
 
         $manager->persist($member);
+        $manager->persist($user);
 
         $manager->flush();
     }
