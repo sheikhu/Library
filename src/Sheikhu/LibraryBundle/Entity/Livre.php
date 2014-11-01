@@ -5,6 +5,7 @@ namespace Sheikhu\LibraryBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Livre
@@ -28,14 +29,16 @@ class Livre
 
     /**
      * @var integer
-     *
+     * @Assert\Range(min="1")
+     * @Assert\NotBlank()
      * @ORM\Column(name="isbn", type="string")
      */
     private $isbn;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Length(min="2")
      * @ORM\Column(name="titre", type="string", length=255)
      */
     private $titre;
@@ -64,7 +67,7 @@ class Livre
     /**
      * @var string
      *
-     * @ORM\Column(name="statut", type="string", length=255)
+     * @ORM\Column(name="statut", type="string", length=255, nullable=true)
      */
     private $statut;
 
@@ -77,7 +80,7 @@ class Livre
 
     /**
      * @var Categorie
-     *
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="Categorie", inversedBy="livres")
      */
     private $categorie;
@@ -98,7 +101,7 @@ class Livre
 
     /**
      * @var MaisonEdition
-     *
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="MaisonEdition", inversedBy="livres")
      */
     private $maisonEdition;
@@ -110,6 +113,9 @@ class Livre
     {
         $this->exemplaires = new ArrayCollection();
         $this->auteurs = new ArrayCollection();
+
+        $this->dateAcquis = new \DateTime();
+        $this->dateParution = new \Datetime();
     }
 
     /**

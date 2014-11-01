@@ -1,5 +1,11 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "SheikhuLibraryBundle::layout.html.twig" %}
 
-{% block fos_user_content %}
-{% include "FOSUserBundle:Registration:register_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block content %}
+{% embed "@SheikhuLibrary/Embed/grid.html.twig" %}
+    {% block title "Nouvel utilisateur" %}
+
+        {% block grid_content %}
+            {% include "SheikhuUserBundle:Registration:register_content.html.twig" %}
+        {% endblock %}
+{% endembed %}
+{% endblock  %}

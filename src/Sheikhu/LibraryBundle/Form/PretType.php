@@ -19,7 +19,7 @@ class PretType extends AbstractType
                 'disabled' => true,
                 'read_only' => true
             ))
-            ->add('exemplaires')
+            ->add('exemplaires', null, array('label' => 'Livres'))
             ->add('dateRetourPrevue', 'date')
 
         ;

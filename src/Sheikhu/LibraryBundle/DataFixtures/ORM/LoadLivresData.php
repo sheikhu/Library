@@ -62,6 +62,24 @@ class LoadLivresData extends AbstractFixture implements OrderedFixtureInterface 
         $this->addReference("dale", $dale);
 
 
+        foreach (range(1, 30) as $i) {
+            $book = new Livre;
+
+            $book->setTitre($faker->sentence(5))
+                ->setSynopsis($faker->paragraph(2))
+                ->setDateAcquis($faker->dateTime)
+                ->setCategorie($this->getReference("aventure"))
+                ->setIsbn($faker->ean13)
+                ->setStatut("disponible")
+                ->setDateParution($faker->dateTime)
+                ->setNombreDisponible($faker->numberBetween(10, 30))
+                ->setDateAcquis($faker->dateTime)
+                ->setMaisonEdition($this->getReference("eyrolles"));
+            $manager->persist($book);
+        }
+
+        $manager->flush();
+
 
     }
 

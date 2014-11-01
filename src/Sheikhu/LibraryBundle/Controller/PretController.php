@@ -46,7 +46,7 @@ class PretController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
+            $this->get('session')->getFlashBag()->add('info', 'Le prêt a bien été ajouté.');
             return $this->redirect($this->generateUrl('membre_show', array('id' => $membre->getId())));
         }
 

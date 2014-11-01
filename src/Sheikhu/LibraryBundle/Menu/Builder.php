@@ -59,15 +59,15 @@ class Builder extends ContainerAware
             ->setAttributes(['icon' => 'icon-cogs']);
 
 
-        /*
+
         // Commandes
-        $menu->addChild('commandes', array('uri' => '#', 'label' => 'Commandes'));
-        $menu['commandes']->setAttributes(array('icon' => 'icon-list-2'));
+        $menu->addChild('categories', array('uri' => '#', 'label' => 'Categories'));
+        $menu['categories']->setAttributes(array('icon' => 'icon-tags'));
 
-        $menu['commandes']->addChild('commandes_list', array('route' => 'commandes', 'label' => 'Voir les commandes'));
-        $menu['commandes']->addChild('commandes_add', array('route' => 'commandes_new', 'label' => 'Ajouter une commande'));
+        $menu['categories']->addChild('commandes_list', array('route' => 'categories', 'label' => 'Liste des categories'));
+        $menu['categories']->addChild('commandes_add', array('route' => 'categories_new', 'label' => 'Ajouter une categorie'));
 
-
+        /*
         // Ventes
         $menu->addChild('ventes', array('uri' => '#', 'label' => 'Ventes'));
         $menu['ventes']->setAttributes(array('icon' => 'icon-shopping-cart'));

@@ -22,7 +22,7 @@
 
             <!-- Statistic Content -->
                         <span class="mws-stat-content">
-                            <span class="mws-stat-title">Nombre de prêts</span>
+                            <span class="mws-stat-title">Prêts de la semaine</span>
                             <span class="mws-stat-value up">{{ totalPrets }}</span>
                         </span>
         </a>
@@ -56,7 +56,7 @@
 {% block content %}
 
 {% embed "@SheikhuLibrary/Embed/grid.html.twig" with { size: 5, padding:false} %}
-    {% block title "Charts" %}
+    {% block title "Statistiques de prets" %}
     {% block grid_content %}
         <canvas id="chart"></canvas>
     {% endblock %}
@@ -102,7 +102,7 @@
 
 {% endblock %}
 
-{% block script %}
+{% block scripts %}
 {{ parent() }}
     <script>
         $(function(){
@@ -114,16 +114,7 @@
             var data = {
                 labels: ["January", "February", "March", "April", "May", "June", "July"],
                 datasets: [
-                    {
-                        label: "My First dataset",
-                        fillColor: "rgba(220,220,220,0.2)",
-                        strokeColor: "rgba(220,220,220,1)",
-                        pointColor: "rgba(220,220,220,1)",
-                        pointStrokeColor: "#fff",
-                        pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(220,220,220,1)",
-                        data: [65, 59, 80, 81, 56, 55, 40]
-                    },
+
                     {
                         label: "My Second dataset",
                         fillColor: "rgba(151,187,205,0.2)",
